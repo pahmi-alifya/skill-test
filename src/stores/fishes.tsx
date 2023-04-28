@@ -101,7 +101,9 @@ export const useFishesStore = create<TFishes>()((set, get) => ({
   getFishesFilter: (val: string, type: string = "komoditas") => {
     if (!val) return set({ fishes: get().tempFishes });
     set({
-      fishes: get().fishes.filter((item) => item[type] === val?.toUpperCase()),
+      fishes: get().fishes.filter(
+        (item) => item[type as keyof TResFishesList] === val?.toUpperCase()
+      ),
     });
   },
   getCities: (label: string) => {
